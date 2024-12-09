@@ -3,8 +3,13 @@ def main():
     text = get_book(bookpath)
     num_words = count_words(text)
     c_count = character_count(text)
-    print(f"{bookpath[6:-4]} has {num_words} words in it!")
-    print(c_count)
+    print(f"--- Begin report of {bookpath[6:-4]} ---")
+    print(f"{num_words} words found in the document \n")
+    for c in dict(sorted(c_count.items(), key=lambda item: item[1], reverse=True)):
+        if c.isalpha():
+            print(f"The '{c}' was found {c_count[c]} times.")
+
+    print("--- End report ---")
 
 def count_words(text):
     words = text.split()
@@ -16,11 +21,11 @@ def get_book(path):
 
 def character_count(text):
 
-    characters = text.lower()
+    lower_text = text.lower()
     c_count = {}
-    for c in characters:
+    for c in lower_text:
         if c in c_count:
-            c_count[c] = c_count[c] + 1
+            c_count[c] += 1
         else:
             c_count[c] = 1
         
