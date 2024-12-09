@@ -1,15 +1,14 @@
 def main():
-    with open("books/frankenstein.txt") as f:
-            file_contents = f.read()
-
-    count_words(file_contents)
-
+    bookpath = input("Give path like 'books/bookname.txt' no quotations: \n")
+    text = get_book(bookpath)
+    num_words =count_words(text)
+    print(f"{bookpath[6:-4]} has {num_words} words in it!")
 def count_words(text):
-    list = text.split()
-    list_count = len(list)
-    #wc = 0
-    #for word in list:
-    #     wc += 1
-    #print(wc)
-    print(list_count)
+    words = text.split()
+    return len(words)
+
+def get_book(path):
+    with open(path) as f:
+        return f.read()
+        
 main()
